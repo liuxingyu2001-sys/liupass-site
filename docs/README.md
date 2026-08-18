@@ -31,8 +31,8 @@
 | SQLite 3.x | ✅ | 轻量单服持久化（与 MySQL 二选一） |
 | Redis 5+ | (群组服必装) | 缓存 + 跨服 Pub/Sub 同步 |
 | Vault | 可选 | 金币购买 / MONEY 奖励 |
-| PlayerPoints 3.x | 可选 | 点券购买 / POINTS 奖励（官方 API `org.black_ixx.playerpoints.PlayerPointsAPI`） |
-| CraftEngine | 可选 | GUI 图标模型显示（`net.momirealms.craftengine.bukkit.api.CraftEngineItems`） |
+| PlayerPoints 3.x | 可选 | 点券购买 / POINTS 奖励 |
+| CraftEngine | 可选 | GUI 图标模型显示 |
 | PlaceholderAPI | 可选 | 占位符变量 |
 
 
