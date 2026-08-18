@@ -6,9 +6,9 @@
 任务列表会默认打开第一个有任务的周期。如果仍然空白，检查任务是否放在了正确的目录：
 
 ```text
-tasks/<通行证ID>/normal/
-tasks/<通行证ID>/daily/
-tasks/<通行证ID>/weekly/
+tasks/normal/
+tasks/daily/
+tasks/weekly/
 ```
 
 ## SQLite 单服需要 Redis 吗

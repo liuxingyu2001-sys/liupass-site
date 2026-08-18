@@ -172,6 +172,16 @@ tiers:
 
 ### 6.4 等级奖励键格式
 
+支持单行和多行写法：
+
+```yaml
+levels-rewards:
+  "1-10":
+    - "money_1000"
+    - "ce_demo_sword"
+  "11-20": ["points_100", "diamond_5"]
+```
+
 | 格式 | 示例 |
 |---|---|
 | 单等级 | `"5"` |
@@ -216,9 +226,9 @@ tasks:
 
 | 周期 | 目录 |
 |---|---|
-| 赛季任务 | `tasks/<通行证>/normal/` |
-| 每日任务 | `tasks/<通行证>/daily/` |
-| 每周任务 | `tasks/<通行证>/weekly/` |
+| 赛季任务 | `tasks/normal/` |
+| 每日任务 | `tasks/daily/` |
+| 每周任务 | `tasks/weekly/` |
 
 ---
 
@@ -337,8 +347,14 @@ PassAPI.forceCompleteTask(uuid, "season1", "my_task");
 
 ## 13. 常见问题
 
+### Q1: 启动报“authors are of wrong type”
+请确保 `plugin.yml` 中 `authors` 是列表：
 
-### Q: 配置了日期但提示时间格式错误
+```yaml
+authors: [liuxingyu2001]
+```
+
+### Q2: 配置了日期但提示时间格式错误
 请使用以下格式之一：
 
 ```yaml
@@ -346,7 +362,7 @@ start: "2026-08-16"
 end: "2026-08-31 23:59:59"
 ```
 
-### Q: 单服 SQLite 不需要 Redis
+### Q3: 单服 SQLite 不需要 Redis
 配置：
 
 ```yaml
@@ -357,10 +373,10 @@ redis:
   enabled: false
 ```
 
-### Q: 玩家经验没有按倍率增加
+### Q4: 玩家经验没有按倍率增加
 检查玩家是否已购买对应付费档，倍率是加法叠加，不是取最高。
 
-### Q: 任务不计数
+### Q5: 任务不计数
 - 检查任务 ID 是否重复（同一周期内不能重复）
 - 检查任务类型和 `entity` / `material` 是否正确
 - 如果是 FISH 任务且服务器使用 CustomFishing，请确认 CustomFishing 已安装

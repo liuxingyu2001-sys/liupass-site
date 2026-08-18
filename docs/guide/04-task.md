@@ -3,9 +3,9 @@
 任务文件放在：
 
 ```text
-tasks/<通行证ID>/normal/*.yml
-tasks/<通行证ID>/daily/*.yml
-tasks/<通行证ID>/weekly/*.yml
+tasks/normal/*.yml
+tasks/daily/*.yml
+tasks/weekly/*.yml
 ```
 
 ## 任务示例
