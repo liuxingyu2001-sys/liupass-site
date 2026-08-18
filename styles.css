@@ -113,8 +113,9 @@ body {
 }
 
 .qr {
-  width: 220px;
-  height: 220px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
   margin: 16px auto;
   display: block;
 }
