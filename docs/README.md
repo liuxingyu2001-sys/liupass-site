@@ -29,32 +29,12 @@
 | Paper / Leaf 1.21+ | ✅ | 按服务器实测环境（Leaf 1.21.11）编译，Java 17+ |
 | MySQL 5.7+ / 8.x | ✅ | 玩家数据持久化（与 SQLite 二选一） |
 | SQLite 3.x | ✅ | 轻量单服持久化（与 MySQL 二选一） |
-| Redis 5+ | ✅ | 缓存 + 跨服 Pub/Sub 同步 |
+| Redis 5+ | ✅ | 可选 | 缓存 + 跨服 Pub/Sub 同步 |
 | Vault | 可选 | 金币购买 / MONEY 奖励 |
 | PlayerPoints 3.x | 可选 | 点券购买 / POINTS 奖励（官方 API `org.black_ixx.playerpoints.PlayerPointsAPI`） |
 | CraftEngine | 可选 | GUI 图标模型显示（`net.momirealms.craftengine.bukkit.api.CraftEngineItems`） |
 | PlaceholderAPI | 可选 | 占位符变量 |
 
-## 构建
-
-```bash
-mvn -q package
-# 产物：liupass-paper/target/Liupass-*.jar
-```
-
-## 依赖管理
-
-插件 jar 只包含自身代码（~144KB）。第三方库通过 **plugin.yml 的 `libraries:` 声明**，由服务器（Paper/Leaf 的 LibraryLoader）在插件加载阶段自动下载并隔离加载，无需自建下载器，也不会阻塞服务器主线程：
-
-| 依赖 | 版本 | 用途 |
-|---|---|---|
-| mysql-connector-j | 8.0.33 | MySQL JDBC 驱动 |
-| protobuf-java | 3.21.9 | MySQL 驱动传递依赖 |
-| jedis | 4.3.1 | Redis 客户端 |
-| commons-pool2 / json | 2.11.1 / 20220320 | jedis 传递依赖 |
-| HikariCP | 5.1.0 | 数据库连接池 |
-| gson / snakeyaml | 2.10.1 / 2.2 | JSON / YAML 解析 |
-| slf4j-api / slf4j-jdk14 | 1.7.36 | 日志桥接 |
 
 ## 安装
 
