@@ -1,0 +1,203 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #222;
+  background: #f7f8fa;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  background: #1f2937;
+  color: #fff;
+  padding: 14px 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  margin-left: 18px;
+}
+
+.site-header nav a:hover {
+  color: #fff;
+}
+
+.hero {
+  background: #111827;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.features {
+  padding: 60px 0;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.features ul {
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.9;
+}
+
+.support {
+  background: #fff;
+  padding: 60px 0;
+}
+
+.support h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.support-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.qr {
+  width: 220px;
+  height: 220px;
+  margin: 16px auto;
+  display: block;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.site-footer {
+  background: #1f2937;
+  color: #9ca3af;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.docs-layout {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  gap: 24px;
+}
+
+.docs-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.docs-sidebar h3 {
+  margin-top: 0;
+}
+
+.docs-sidebar a {
+  display: block;
+  padding: 8px 0;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.docs-content {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+#markdown-body h1,
+#markdown-body h2,
+#markdown-body h3 {
+  margin-top: 1.4em;
+}
+
+#markdown-body pre {
+  background: #f3f4f6;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 6px;
+}
+
+#markdown-body code {
+  background: #f3f4f6;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+#markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#markdown-body th,
+#markdown-body td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+}
+
+@media (max-width: 720px) {
+  .docs-layout {
+    flex-direction: column;
+  }
+  .docs-sidebar {
+    width: 100%;
+  }
+}

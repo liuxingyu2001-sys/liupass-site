@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liupass 文档</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">Liupass</a>
+      <nav>
+        <a href="index.html">首页</a>
+        <a href="docs.html">文档</a>
+        <a href="index.html#support">购买与赞助</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="docs-layout">
+    <aside class="docs-sidebar">
+      <h3>文档</h3>
+      <a href="docs.html?doc=README">README</a>
+      <a href="docs.html?doc=USER_GUIDE">服主使用说明</a>
+    </aside>
+    <section class="docs-content">
+      <article id="markdown-body"></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Liupass 战令插件</p>
+    </div>
+  </footer>
+
+  <script>
+    async function loadDoc() {
+      const params = new URLSearchParams(window.location.search);
+      const doc = params.get('doc') || 'README';
+      const file = 'docs/' + doc + '.md';
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error('not found');
+        const text = await res.text();
+        document.getElementById('markdown-body').innerHTML = marked.parse(text);
+      } catch (e) {
+        document.getElementById('markdown-body').innerHTML = '<p>文档加载失败，请返回首页。</p>';
+      }
+    }
+    loadDoc();
+  </script>
+</body>
+</html>
