@@ -1,12 +1,5 @@
 # 常见问题
 
-## 启动报 authors are of wrong type
-
-检查 `plugin.yml`：
-
-```yaml
-authors: [liuxingyu2001]
-```
 
 ## 任务列表空白
 
