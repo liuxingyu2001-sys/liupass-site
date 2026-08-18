@@ -46,7 +46,7 @@ tasks:
 | KILL | 击杀生物 |
 | MINE | 挖掘方块 |
 | CRAFT | 合成物品 |
-| FISH | 钓鱼，支持 CustomFishing |
+| FISH | 钓鱼 |
 | ENCHANT | 附魔 |
 | BREW | 酿造 |
 | EAT | 吃东西 |

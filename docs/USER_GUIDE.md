@@ -33,7 +33,6 @@ Liupass 是一个我的世界 Paper/Leaf 战令（Battle Pass）插件，支持�
 | Vault | 金币购买 / 金币奖励 |
 | PlayerPoints | 点券购买 / 点券奖励 |
 | CraftEngine | GUI 自定义模型显示 |
-| CustomFishing | 自定义钓鱼任务进度 |
 | PlaceholderAPI | 占位符变量 |
 
 ---
@@ -214,7 +213,7 @@ tasks:
 | KILL | 击杀生物 |
 | MINE | 挖掘方块 |
 | CRAFT | 合成物品 |
-| FISH | 钓鱼（支持 CustomFishing） |
+| FISH | 钓鱼 |
 | ENCHANT | 附魔 |
 | BREW | 酿造 |
 | EAT | 吃东西 |
@@ -379,7 +378,6 @@ redis:
 ### Q5: 任务不计数
 - 检查任务 ID 是否重复（同一周期内不能重复）
 - 检查任务类型和 `entity` / `material` 是否正确
-- 如果是 FISH 任务且服务器使用 CustomFishing，请确认 CustomFishing 已安装
 
 ---
 
