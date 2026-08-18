@@ -22,8 +22,17 @@
   <main class="docs-layout">
     <aside class="docs-sidebar">
       <h3>文档</h3>
-      <a href="docs.html?doc=README">README</a>
-      <a href="docs.html?doc=USER_GUIDE">服主使用说明</a>
+      <a href="docs.html?doc=README">项目说明</a>
+      <a href="docs.html?doc=USER_GUIDE">使用说明总览</a>
+      <h3>模块指南</h3>
+      <a href="docs.html?doc=guide/01-install">安装部署</a>
+      <a href="docs.html?doc=guide/02-config">主配置</a>
+      <a href="docs.html?doc=guide/03-pass">通行证</a>
+      <a href="docs.html?doc=guide/04-task">任务</a>
+      <a href="docs.html?doc=guide/05-reward">奖励</a>
+      <a href="docs.html?doc=guide/06-command">命令权限</a>
+      <a href="docs.html?doc=guide/07-api">开发 API</a>
+      <a href="docs.html?doc=guide/08-faq">常见问题</a>
     </aside>
     <section class="docs-content">
       <article id="markdown-body"></article>
@@ -37,9 +46,8 @@
   </footer>
 
   <script>
-    async function loadDoc() {
-      const params = new URLSearchParams(window.location.search);
-      const doc = params.get('doc') || 'README';
+    async function loadDoc(doc) {
+      doc = doc || 'README';
       const file = 'docs/' + doc + '.md';
       try {
         const res = await fetch(file);
@@ -50,7 +58,21 @@
         document.getElementById('markdown-body').innerHTML = '<p>文档加载失败，请返回首页。</p>';
       }
     }
-    loadDoc();
+
+    document.getElementById('markdown-body').addEventListener('click', function (e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (href && href.endsWith('.md')) {
+        e.preventDefault();
+        const doc = href.replace(/\.md$/, '');
+        loadDoc(doc);
+        history.pushState(null, '', '?doc=' + encodeURIComponent(doc));
+      }
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    loadDoc(params.get('doc') || 'README');
   </script>
 </body>
 </html>
