@@ -111,12 +111,36 @@ tasks:
   - id: kill_zombie
     name: "击杀 10 只僵尸"
     type: KILL                 # KILL/MINE/CRAFT/FISH/ENCHANT/BREW/EAT/PLAY_TIME/LOGIN/CUSTOM
-    entity: ZOMBIE             # KILL 用 entity；MINE 用 material；EAT 用 material
+    entity: ZOMBIE             # KILL 用 entity（支持单个或列表）；MINE 用 material；EAT 用 material
     material: diamond_sword    # 可选：仅作为任务图标显示材质（KILL 等非 MINE 类型也能用）
     amount: 10
     xp: 1000                   # 完成自动获得经验（×档位倍率）
     rewards: ["money_1000"]    # 完成进入待领取队列
 ```
+
+`entity`（KILL）和 `material` 都支持多目标列表，命中任一即累计一次进度，例如“击杀敌对生物”：
+
+```yaml
+- id: kill_hostile
+  name: "击杀敌对生物"
+  type: KILL
+  entity:
+    - ZOMBIE
+    - SKELETON
+    - CREEPER
+    - SPIDER
+  amount: 50
+  xp: 2000
+```
+
+`material` 对不同任务类型的匹配目标如下；省略时表示匹配任意目标：
+
+- `FISH`：钓获物品材质，例如 `COD`。
+- `ENCHANT`：被附魔物品材质或新增附魔键，例如 `DIAMOND_SWORD`、`minecraft:sharpness`。
+- `BREW`：酿造原料材质、成品物品材质或基础药水类型，例如 `NETHER_WART`、`POTION`、`AWKWARD`。
+- `CRAFT` / `EAT`：合成或食用的物品材质；`MINE` 使用挖掘方块材质。
+
+目标匹配不区分大小写，并兼容 `minecraft:` 命名空间和连字符写法。酿造事件没有原生“玩家完成者”字段：玩家打开并操作酿造台时会记录归属；无人操作的漏斗/自动酿造不会计入玩家任务。
 
 ### 奖励（rewards/common.yml）
 

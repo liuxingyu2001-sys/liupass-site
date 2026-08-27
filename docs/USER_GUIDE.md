@@ -210,16 +210,18 @@ tasks:
 
 | 类型 | 说明 |
 |---|---|
-| KILL | 击杀生物 |
-| MINE | 挖掘方块 |
-| CRAFT | 合成物品 |
-| FISH | 钓鱼 |
-| ENCHANT | 附魔 |
-| BREW | 酿造 |
-| EAT | 吃东西 |
-| PLAY_TIME | 在线时长 |
-| LOGIN | 登录次数 |
+| KILL | 击杀生物，`entity` 支持单个或列表，命中任一即累计 |
+| MINE | 挖掘方块，目标使用 `material` |
+| CRAFT | 合成物品，`material` 为空表示任意 |
+| FISH | 钓鱼，`material` 匹配钓获物品材质（如 `COD`） |
+| ENCHANT | 附魔，`material` 匹配被附魔物品材质或附魔键（如 `DIAMOND_SWORD`、`minecraft:sharpness`） |
+| BREW | 酿造，`material` 匹配酿造原料、成品物品材质或基础药水类型（如 `NETHER_WART`、`POTION`、`AWKWARD`） |
+| EAT | 吃东西，目标使用 `material` |
+| PLAY_TIME | 在线时长，`amount` 为分钟 |
+| LOGIN | 登录次数，`amount` 为次数 |
 | CUSTOM | 由 PassAPI 或其他插件驱动 |
+
+`material` 和 KILL 的 `entity` 匹配不区分大小写，并兼容 `minecraft:cod`、`nether-wart` 这类写法。KILL 任务中 `material` 只作为图标显示，不是击杀目标；需要按生物过滤时请写 `entity`。FISH、ENCHANT、BREW 的 `material` 会参与事件目标匹配，需要单独指定图标时使用 `icon-material`。酿造台事件没有玩家字段，插件会记录最近实际操作酿造台的玩家；漏斗或无人自动酿造不会计入玩家任务。
 
 ### 7.2 任务周期
 

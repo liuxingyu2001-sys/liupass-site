@@ -217,23 +217,25 @@ settings:
 | 值 | 说明 | target 字段 |
 |----|------|------------|
 | `MINE` | 挖掘方块 | `material`（方块材质） |
-| `KILL` | 击杀生物 | `entity`（实体类型） |
+| `KILL` | 击杀生物 | `entity`（单个或列表，命中任一即累计） |
 | `CRAFT` | 合成物品 | `material`（空=任意） |
-| `FISH` | 钓鱼 | `material`（空=任意） |
-| `ENCHANT` | 附魔 | `material`（空=任意） |
-| `BREW` | 酿造 | `material`（空=任意） |
+| `FISH` | 钓鱼 | `material`（钓获物品材质，空=任意） |
+| `ENCHANT` | 附魔 | `material`（被附魔物品材质或附魔键，空=任意） |
+| `BREW` | 酿造 | `material`（原料/成品材质或基础药水类型，空=任意） |
 | `EAT` | 吃东西 | `material`（食物材质） |
 | `PLAY_TIME` | 在线时长 | 无（amount=分钟） |
 | `LOGIN` | 登录次数 | 无（amount=次数） |
 | `CUSTOM` | 自定义（仅 PassAPI 驱动） | 无 |
 
+`FISH` 的 `material` 匹配原版钓鱼事件中钓获物品的材质，例如 `COD`；`ENCHANT` 匹配被附魔物品材质或新增附魔键，例如 `DIAMOND_SWORD`、`minecraft:sharpness`；`BREW` 匹配酿造原料材质、成品物品材质或基础药水类型，例如 `NETHER_WART`、`POTION`、`AWKWARD`。目标不区分大小写，并兼容 `minecraft:` 命名空间和连字符写法。省略 `material` 时匹配任意目标。酿造事件没有原生玩家字段，插件使用最近实际操作酿造台的玩家归属；漏斗或无人自动酿造不会计入玩家任务。
+
 ### 7.3 Period（任务周期）
 
 | 值 | 说明 | 目录 |
 |----|------|------|
-| `NORMAL` | 赛季任务（一次性） | `tasks/<passId>/normal/` |
-| `DAILY` | 每日任务（按自然日重置） | `tasks/<passId>/daily/` |
-| `WEEKLY` | 每周任务（按自然周重置） | `tasks/<passId>/weekly/` |
+| `NORMAL` | 赛季任务（一次性） | `tasks/normal/*.yml` |
+| `DAILY` | 每日任务（按自然日重置） | `tasks/daily/*.yml` |
+| `WEEKLY` | 每周任务（按自然周重置） | `tasks/weekly/*.yml` |
 
 ---
 
@@ -246,10 +248,9 @@ plugins/Liupass/ 或 shared-config-path 指向的共享目录/
 ├── passes/
 │   └── season1.yml       # 通行证定义（可多个文件）
 ├── tasks/
-│   └── season1/
-│       ├── normal/*.yml  # 赛季任务
-│       ├── daily/*.yml   # 每日任务
-│       └── weekly/*.yml  # 每周任务
+│   ├── normal/*.yml      # 赛季任务（所有通行证共用）
+│   ├── daily/*.yml       # 每日任务（所有通行证共用）
+│   └── weekly/*.yml      # 每周任务（所有通行证共用）
 └── rewards/
     └── common.yml        # 奖励注册表（任务/等级通过 ID 引用）
 ```
