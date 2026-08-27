@@ -45,6 +45,23 @@ body {
   color: #fff;
 }
 
+.lang-switch {
+  margin-left: 18px;
+  padding: 5px 14px;
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.lang-switch:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
 .hero {
   background: linear-gradient(180deg, #0f172a 0%, #0b0f14 100%);
   color: #fff;

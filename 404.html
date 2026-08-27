@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>页面不存在</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Liupass</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js"></script>
 </head>
 <body>
-  <main class="container" style="padding: 80px 20px; text-align: center;">
-    <h1>页面不存在</h1>
-    <p><a href="index.html">返回首页</a></p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" data-i18n="brand">Liupass</a>
+      <nav>
+        <a href="index.html" data-i18n="nav.home">首页</a>
+        <a href="docs.html" data-i18n="nav.docs">文档</a>
+        <button id="lang-switch" class="lang-switch">中文</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>404</h1>
+        <p data-i18n="notfound.p">页面不存在或已被移除。</p>
+        <p><a class="button" href="index.html" data-i18n="notfound.button">返回首页</a></p>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p data-i18n="footer">Liupass 战令插件</p>
+    </div>
+  </footer>
 </body>
 </html>

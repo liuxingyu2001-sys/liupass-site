@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liupass 战令插件</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html">Liupass</a>
+      <a class="logo" href="index.html" data-i18n="brand">Liupass</a>
       <nav>
-        <a href="index.html">首页</a>
-        <a href="docs.html">文档</a>
+        <a href="index.html" data-i18n="nav.home">首页</a>
+        <a href="docs.html" data-i18n="nav.docs">文档</a>
+        <button id="lang-switch" class="lang-switch">中文</button>
       </nav>
     </div>
   </header>
@@ -20,34 +22,33 @@
   <main>
     <section class="hero">
       <div class="container">
-        <h1>Liupass 战令 / 通行证插件</h1>
-        <p>适用于 Paper / Leaf 1.21 以上版本服务器的战令系统，支持多赛季、三档位购买、自定义任务与奖励。</p>
-        <p><a class="button" href="docs.html">查看使用文档</a></p>
+        <h1 data-i18n="hero.h1">Liupass 战令 / 通行证插件</h1>
+        <p data-i18n="hero.p">适用于 Paper / Leaf 1.21 以上版本服务器的战令系统，支持多赛季、三档位购买、自定义任务与奖励。</p>
+        <p><a class="button" href="docs.html" data-i18n="hero.button">查看使用文档</a></p>
       </div>
     </section>
 
     <section class="features">
       <div class="container">
-        <h2>功能特点</h2>
+        <h2 data-i18n="feat.h2">功能特点</h2>
         <ul>
-          <li>多通行证，每个赛季独立配置</li>
-          <li>普通、高级、豪华三档位独立购买</li>
-          <li>支持 PlayerPoints 点券与 Vault 金币</li>
-          <li>任务类型：击杀、挖掘、合成、钓鱼、附魔、酿造、进食、在线时长、登录、自定义</li>
-          <li>每日、每周、赛季任务周期</li>
-          <li>奖励类型：指令、物品、CraftEngine 模型、金币、点券</li>
-          <li>MySQL 或 SQLite 数据存储</li>
-          <li>Redis 跨服同步（可选）</li>
-          <li>PlaceholderAPI 变量与 PassAPI 开发接口</li>
+          <li data-i18n="feat.1">多通行证，每个赛季独立配置</li>
+          <li data-i18n="feat.2">普通、高级、豪华三档位独立购买</li>
+          <li data-i18n="feat.3">支持 PlayerPoints 点券与 Vault 金币</li>
+          <li data-i18n="feat.4">任务类型：击杀、挖掘、合成、钓鱼、附魔、酿造、进食、在线时长、登录、自定义</li>
+          <li data-i18n="feat.5">每日、每周、赛季任务周期</li>
+          <li data-i18n="feat.6">奖励类型：指令、物品、CraftEngine 模型、金币、点券</li>
+          <li data-i18n="feat.7">MySQL 或 SQLite 数据存储</li>
+          <li data-i18n="feat.8">Redis 跨服同步（可选）</li>
+          <li data-i18n="feat.9">PlaceholderAPI 变量与 PassAPI 开发接口</li>
         </ul>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Liupass 战令插件</p>
+      <p data-i18n="footer">Liupass 战令插件</p>
     </div>
   </footer>
 </body>

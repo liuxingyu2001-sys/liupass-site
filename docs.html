@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liupass 文档</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="i18n.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html">Liupass</a>
+      <a class="logo" href="index.html" data-i18n="brand">Liupass</a>
       <nav>
-        <a href="index.html">首页</a>
-        <a href="docs.html">文档</a>
+        <a href="index.html" data-i18n="nav.home">首页</a>
+        <a href="docs.html" data-i18n="nav.docs">文档</a>
+        <button id="lang-switch" class="lang-switch">中文</button>
       </nav>
     </div>
   </header>
 
   <main class="docs-layout">
     <aside class="docs-sidebar">
-      <h3>文档</h3>
-      <a href="docs.html?doc=README">项目说明</a>
-      <a href="docs.html?doc=USER_GUIDE">使用说明总览</a>
-      <h3>模块指南</h3>
-      <a href="docs.html?doc=guide/01-install">安装部署</a>
-      <a href="docs.html?doc=guide/02-config">主配置</a>
-      <a href="docs.html?doc=guide/03-pass">通行证</a>
-      <a href="docs.html?doc=guide/04-task">任务</a>
-      <a href="docs.html?doc=guide/05-reward">奖励</a>
-      <a href="docs.html?doc=guide/06-command">命令权限</a>
-      <a href="docs.html?doc=guide/07-api">开发 API</a>
-      <a href="docs.html?doc=guide/08-faq">常见问题</a>
+      <h3 data-i18n="docs.h2">文档</h3>
+      <a href="docs.html?doc=README" data-i18n="sidebar.readme">项目说明</a>
+      <a href="docs.html?doc=USER_GUIDE" data-i18n="sidebar.user">使用说明总览</a>
+      <a href="docs.html?doc=guide/01-install" data-i18n="sidebar.01">安装部署</a>
+      <a href="docs.html?doc=guide/02-config" data-i18n="sidebar.02">主配置</a>
+      <a href="docs.html?doc=guide/03-pass" data-i18n="sidebar.03">通行证</a>
+      <a href="docs.html?doc=guide/04-task" data-i18n="sidebar.04">任务</a>
+      <a href="docs.html?doc=guide/05-reward" data-i18n="sidebar.05">奖励</a>
+      <a href="docs.html?doc=guide/06-command" data-i18n="sidebar.06">命令权限</a>
+      <a href="docs.html?doc=guide/07-api" data-i18n="sidebar.07">开发 API</a>
+      <a href="docs.html?doc=guide/08-faq" data-i18n="sidebar.08">常见问题</a>
     </aside>
     <section class="docs-content">
       <article id="markdown-body"></article>
@@ -40,21 +41,21 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Liupass 战令插件</p>
+      <p data-i18n="footer">Liupass 战令插件</p>
     </div>
   </footer>
 
   <script>
     async function loadDoc(doc) {
       doc = doc || 'README';
-      const file = 'docs/' + doc + '.md';
+      const file = I18N.doc(doc);
       try {
         const res = await fetch(file);
         if (!res.ok) throw new Error('not found');
         const text = await res.text();
         document.getElementById('markdown-body').innerHTML = marked.parse(text);
       } catch (e) {
-        document.getElementById('markdown-body').innerHTML = '<p>文档加载失败，请返回首页。</p>';
+        document.getElementById('markdown-body').innerHTML = '<p>Documentation failed to load. Please go back to the home page.</p>';
       }
     }
 
