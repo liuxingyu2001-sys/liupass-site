@@ -209,6 +209,7 @@ settings:
 | `COMMAND` | 执行命令 | `command` |
 | `ITEM` | 发放物品 | `material` |
 | `CRAFTENGINE` | 直接发放 CraftEngine 模型物品 | `model` |
+| `ITEMEDIT` | 直接发放 ItemEdit 自定义物品 | `model` |
 | `MONEY` | Vault 金币 | `amount` |
 | `POINTS` | PlayerPoints 点券 | `amount` |
 
@@ -341,10 +342,15 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
 > 奖励字段：`name` / `description` / `icon-model` / `icon-material` 均为**可选显示字段**，所有类型通用，仅影响 GUI 预览不影响发放。
-> 图标优先级：`icon-model` → `icon-material` → CRAFTENGINE 的 `model` → ITEM 的 `material`。
+> 图标优先级：`icon-model` → `icon-material` → CRAFTENGINE / ITEMEDIT 的 `model` → ITEM 的 `material`。
+> CRAFTENGINE / ITEMEDIT 奖励未写 `name`/`lore`/`description` 时，GUI 自动读取物品库中该物品的真实名称与 Lore 展示。
 
 ### 8.4 文本格式（MiniMessage 富文本）
 
@@ -392,6 +398,7 @@ name: "<hover:show_text:'点击查看'><aqua>悬停我</aqua></hover>"  # 悬停
 | Vault | 金币购买 / MONEY 奖励 |
 | PlayerPoints | 点券购买 / POINTS 奖励 |
 | CraftEngine | CE 模型图标 / CRAFTENGINE 奖励 |
+| ItemEdit | ITEMEDIT 奖励（缺失时跳过并警告） |
 | PlaceholderAPI | 占位符 |
 
 ### 9.3 模块结构

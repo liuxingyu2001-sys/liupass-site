@@ -13,12 +13,12 @@
 - ✅ 任务系统：KILL / MINE / CRAFT / FISH / ENCHANT / BREW / EAT / PLAY_TIME / LOGIN / CUSTOM
 - ✅ 任务周期：赛季任务（一次性）/ 每日任务（按日重置）/ 每周任务（按周重置）
 - ✅ 任务经验**自动入账**，任务奖励 + 等级奖励**手动领取**（待领取队列）
-- ✅ 奖励类型：COMMAND / ITEM / CRAFTENGINE（CE 模型物品）/ MONEY / POINTS，全部通过奖励 ID 引用复用
+- ✅ 奖励类型：COMMAND / ITEM / CRAFTENGINE（CE 模型物品）/ ITEMEDIT（IE 自定义物品）/ MONEY / POINTS，全部通过奖励 ID 引用复用
 - ✅ 数据持久化：MySQL 或 SQLite（二选一）+ Redis 缓存与 Pub/Sub 跨服实时同步
 - ✅ 脏标记批量回写（30s）+ 版本号乐观锁 + Redis 分布式锁
 - ✅ 赛季到期自动清理玩家数据，需重新购买
 - ✅ 完整权限体系 + 管理指令 + Tab 补全
-- ✅ CraftEngine 图标模型（软依赖，缺失回退原生材质）
+- ✅ CraftEngine / ItemEdit 自定义物品奖励与图标（软依赖，缺失回退原生材质）
 - ✅ PlaceholderAPI 变量 + 对外 PassAPI
 - ✅ 配置热重载（`/liupass reload`）
 
@@ -32,7 +32,8 @@
 | Redis 5+ | (群组服必装) | 缓存 + 跨服 Pub/Sub 同步 |
 | Vault | 可选 | 金币购买 / MONEY 奖励 |
 | PlayerPoints 3.x | 可选 | 点券购买 / POINTS 奖励 |
-| CraftEngine | 可选 | GUI 图标模型显示 |
+| CraftEngine | 可选 | GUI 图标模型显示 / CRAFTENGINE 奖励 |
+| ItemEdit | 可选 | IE 自定义物品奖励（ITEMEDIT，缺失时跳过并警告） |
 | PlaceholderAPI | 可选 | 占位符变量 |
 
 
@@ -174,13 +175,19 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  # 方式3：直接发放 IE（ItemEdit）物品
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
-> 奖励类型：`COMMAND` / `ITEM` / `CRAFTENGINE`（直接发放 CE 物品，未装 CE 时跳过并警告）/ `MONEY` / `POINTS`
+> 奖励类型：`COMMAND` / `ITEM` / `CRAFTENGINE`（直接发放 CE 物品，未装 CE 时跳过并警告）/ `ITEMEDIT`（直接发放 ItemEdit 物品，未装 IE 时跳过并警告）/ `MONEY` / `POINTS`
 > **`icon-model`**（可选，任何类型通用）：仅用于 GUI 等级格子显示 CE 模型，不影响实际发放
 > **`name`**（可选，所有类型通用）：GUI 预览标题；ITEM 类型同时用作物品显示名
 > **`description`**（可选，所有类型通用）：GUI 预览描述，支持单行字符串或多行列表
-> 等级格子图标优先级：`icon-model` → CRAFTENGINE 的 `model` → ITEM 的 `material`
+> **CE / IE 物品自动预览**：CRAFTENGINE / ITEMEDIT 奖励未写 `name`/`lore`/`description` 时，GUI 会自动读取物品库中该物品的真实名称与 Lore 展示（需已安装对应插件）
+> 等级格子图标优先级：`icon-model` → CRAFTENGINE 的 `model` / ITEMEDIT 的 `model` → ITEM 的 `material`
 > **多个奖励 / 重复奖励**：同一等级或任务的奖励列表可写多个 ID（可重复），GUI 预览自动合并显示数量（如 2×money_1000 → "金币 2000"），实际发放逐条执行
 
 ### 文本格式（MiniMessage 富文本）
@@ -335,4 +342,4 @@ CREATE TABLE IF NOT EXISTS liupass_purchases (
 - **启动报"配置加载失败"**：按错误提示检查 `rewards/` 引用、任务/通行证 ID 重复等
 - **跨服不同步**：检查 Redis 连接；确认所有服使用同一 MySQL/Redis
 - **点券/金币购买不可用**：确认对应经济插件已安装且为软依赖加载顺序（无需前置）
-- **CraftEngine 图标不显示**：确认模型 ID 正确且 CraftEngine 已安装（缺失时自动回退原生材质）
+- **CraftEngine / ItemEdit 图标不显示**：确认模型 ID 正确且对应插件已安装（缺失时自动回退原生材质）

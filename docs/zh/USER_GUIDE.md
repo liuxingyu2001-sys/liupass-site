@@ -32,7 +32,8 @@ Liupass 是一个我的世界 Paper/Leaf 战令（Battle Pass）插件，支持�
 |---|---|
 | Vault | 金币购买 / 金币奖励 |
 | PlayerPoints | 点券购买 / 点券奖励 |
-| CraftEngine | GUI 自定义模型显示 |
+| CraftEngine | GUI 自定义模型显示 / CE 物品奖励 |
+| ItemEdit | IE 自定义物品奖励 |
 | PlaceholderAPI | 占位符变量 |
 
 ---
@@ -258,6 +259,10 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
 ### 奖励类型
@@ -267,8 +272,11 @@ rewards:
 | COMMAND | 执行后台命令 |
 | ITEM | 发放物品 |
 | CRAFTENGINE | 发放 CraftEngine 自定义物品 |
+| ITEMEDIT | 发放 ItemEdit 自定义物品 |
 | MONEY | Vault 金币 |
 | POINTS | PlayerPoints 点券 |
+
+> **CE / IE 物品自动预览**：CRAFTENGINE / ITEMEDIT 奖励未写 `name`/`lore`/`description` 时，GUI 会自动读取物品库中该物品的真实名称与 Lore 展示（需已安装对应插件）。
 
 ---
 

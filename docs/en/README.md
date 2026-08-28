@@ -13,12 +13,12 @@ A Minecraft Paper server battle pass plugin with **multi-server cross-server syn
 - ✅ Task types: KILL / MINE / CRAFT / FISH / ENCHANT / BREW / EAT / PLAY_TIME / LOGIN / CUSTOM
 - ✅ Task periods: season tasks (one-time) / daily tasks (reset daily) / weekly tasks (reset weekly)
 - ✅ Task XP is **credited automatically**; task and level rewards are **claimed manually** (claim queue)
-- ✅ Reward types: COMMAND / ITEM / CRAFTENGINE (CE model items) / MONEY / POINTS, all referenced by reward ID
+- ✅ Reward types: COMMAND / ITEM / CRAFTENGINE (CE model items) / ITEMEDIT (IE custom items) / MONEY / POINTS, all referenced by reward ID
 - ✅ Persistence: MySQL or SQLite (either one) + Redis cache and Pub/Sub cross-server sync
 - ✅ Dirty-flag batch write-back (30s) + version optimistic locking + Redis distributed locks
 - ✅ Automatic player-data cleanup when a season expires; players must purchase again
 - ✅ Full permission system + admin commands + Tab completion
-- ✅ CraftEngine icon models (soft dependency, falls back to vanilla material)
+- ✅ CraftEngine / ItemEdit custom item rewards and icons (soft dependency, falls back to vanilla material)
 - ✅ PlaceholderAPI placeholders + public PassAPI
 - ✅ Hot config reload (`/liupass reload`)
 
@@ -32,7 +32,8 @@ A Minecraft Paper server battle pass plugin with **multi-server cross-server syn
 | Redis 5+ | (required for network servers) | Cache + cross-server Pub/Sub sync |
 | Vault | optional | Economy purchases / MONEY rewards |
 | PlayerPoints 3.x | optional | Points purchases / POINTS rewards |
-| CraftEngine | optional | GUI icon models |
+| CraftEngine | optional | GUI icon models / CRAFTENGINE rewards |
+| ItemEdit | optional | IE custom item rewards (ITEMEDIT; skipped with a warning when missing) |
 | PlaceholderAPI | optional | Placeholder variables |
 
 ## Installation
@@ -173,13 +174,19 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  # Method 3: grant the IE (ItemEdit) item directly
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
-> Reward types: `COMMAND` / `ITEM` / `CRAFTENGINE` (grants CE item directly; skipped with a warning when CE is missing) / `MONEY` / `POINTS`
+> Reward types: `COMMAND` / `ITEM` / `CRAFTENGINE` (grants CE item directly; skipped with a warning when CE is missing) / `ITEMEDIT` (grants ItemEdit item directly; skipped with a warning when IE is missing) / `MONEY` / `POINTS`
 > **`icon-model`** (optional, any type): GUI icon CE model only, does not affect granting
 > **`name`** (optional, all types): GUI preview title; ITEM type also uses it as item display name
 > **`description`** (optional, all types): GUI preview description, string or multi-line list
-> Level-cell icon priority: `icon-model` → CRAFTENGINE `model` → ITEM `material`
+> **Auto preview for CE / IE items**: if a CRAFTENGINE / ITEMEDIT reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library (the corresponding plugin must be installed).
+> Level-cell icon priority: `icon-model` → CRAFTENGINE `model` / ITEMEDIT `model` → ITEM `material`
 > **Multiple / duplicate rewards**: a level or task reward list may repeat IDs; the GUI preview merges counts (e.g. 2×money_1000 → "金币 2000"), and each entry is granted individually.
 
 ### Text Format (MiniMessage Rich Text)

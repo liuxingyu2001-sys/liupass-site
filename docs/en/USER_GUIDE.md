@@ -32,7 +32,8 @@ Optional dependency plugins:
 |---|---|
 | Vault | economy purchases / economy rewards |
 | PlayerPoints | points purchases / points rewards |
-| CraftEngine | custom GUI models |
+| CraftEngine | custom GUI models / CE item rewards |
+| ItemEdit | IE custom item rewards |
 | PlaceholderAPI | placeholder variables |
 
 ---
@@ -258,6 +259,10 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
 ### Reward Types
@@ -267,8 +272,11 @@ rewards:
 | COMMAND | run a console command |
 | ITEM | give an item |
 | CRAFTENGINE | give a CraftEngine custom item |
+| ITEMEDIT | give an ItemEdit custom item |
 | MONEY | Vault economy |
 | POINTS | PlayerPoints |
+
+> **Auto preview for CE / IE items**: if a CRAFTENGINE / ITEMEDIT reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library (the corresponding plugin must be installed).
 
 ---
 

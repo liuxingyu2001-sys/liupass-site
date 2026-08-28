@@ -32,6 +32,10 @@ rewards:
     - type: CRAFTENGINE
       model: "default:demo_sword"
       amount: 1
+  ie_item:
+    - type: ITEMEDIT
+      model: "jiu"
+      amount: 1
 ```
 
 ## 奖励类型
@@ -41,8 +45,11 @@ rewards:
 | COMMAND | 执行后台命令 |
 | ITEM | 发放物品 |
 | CRAFTENGINE | 发放 CraftEngine 自定义物品 |
+| ITEMEDIT | 发放 ItemEdit 自定义物品 |
 | MONEY | Vault 金币 |
 | POINTS | PlayerPoints 点券 |
+
+> **CE / IE 物品自动预览**：CRAFTENGINE / ITEMEDIT 奖励未写 `name` / `lore` / `description` 时，GUI 会自动读取物品库中该物品的真实名称与 Lore 展示（需已安装对应插件）。
 
 ## 通用显示字段
 
