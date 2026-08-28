@@ -208,8 +208,8 @@ settings:
 |----|------|---------|
 | `COMMAND` | run a command | `command` |
 | `ITEM` | give an item | `material` |
-| `CRAFTENGINE` | grant a CraftEngine model item directly | `model` |
-| `ITEMEDIT` | grant an ItemEdit custom item directly | `model` |
+| `CE` | grant a CraftEngine model item directly | `model` |
+| `IE` | grant an ItemEdit custom item directly | `model` |
 | `MONEY` | Vault economy | `amount` |
 | `POINTS` | PlayerPoints | `amount` |
 
@@ -339,18 +339,18 @@ rewards:
       lore: ["&7第一赛季专属"]
       enchants: [{type: SHARPNESS, level: 5}]
   ce_sword:
-    - type: CRAFTENGINE
+    - type: CE
       model: "default:demo_sword"
       amount: 1
   ie_item:
-    - type: ITEMEDIT
+    - type: IE
       model: "jiu"
       amount: 1
 ```
 
 > Reward fields: `name` / `description` / `icon-model` / `icon-material` are all **optional display fields** common to all types; they only affect the GUI preview, not granting.
-> Icon priority: `icon-model` → `icon-material` → CRAFTENGINE / ITEMEDIT `model` → ITEM `material`.
-> If a CRAFTENGINE / ITEMEDIT reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library.
+> Icon priority: `icon-model` → `icon-material` → CE / IE `model` → ITEM `material`.
+> If a CE / IE reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library.
 
 ### 8.4 Text Format (MiniMessage Rich Text)
 
@@ -397,8 +397,8 @@ Parsing rule: if the text contains `<`, MiniMessage is tried first (falls back t
 |------|------|
 | Vault | economy purchases / MONEY rewards |
 | PlayerPoints | points purchases / POINTS rewards |
-| CraftEngine | CE model icons / CRAFTENGINE rewards |
-| ItemEdit | ITEMEDIT rewards (skipped with a warning when missing) |
+| CraftEngine | CE model icons / CE rewards |
+| ItemEdit | IE rewards (skipped with a warning when missing) |
 | PlaceholderAPI | placeholders |
 
 ### 9.3 Module Structure

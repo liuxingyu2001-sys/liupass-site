@@ -29,11 +29,11 @@ rewards:
       lore:
         - "&7第一赛季专属"
   ce_sword:
-    - type: CRAFTENGINE
+    - type: CE
       model: "default:demo_sword"
       amount: 1
   ie_item:
-    - type: ITEMEDIT
+    - type: IE
       model: "jiu"
       amount: 1
 ```
@@ -44,12 +44,12 @@ rewards:
 |---|---|
 | COMMAND | run a console command |
 | ITEM | give an item |
-| CRAFTENGINE | give a CraftEngine custom item |
-| ITEMEDIT | give an ItemEdit custom item |
+| CE | give a CraftEngine custom item |
+| IE | give an ItemEdit custom item |
 | MONEY | Vault economy |
 | POINTS | PlayerPoints |
 
-> **Auto preview for CE / IE items**: if a CRAFTENGINE / ITEMEDIT reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library (the corresponding plugin must be installed).
+> **Auto preview for CE / IE items**: if a CE / IE reward has no custom `name` / `lore` / `description`, the GUI automatically shows the item's real name and lore from its item library (the corresponding plugin must be installed).
 
 ## Common Display Fields
 
